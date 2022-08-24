@@ -1,32 +1,36 @@
-output "resource_group_name" {
-  value = azurerm_resource_group.default.name
-}
+# output "resource_group_name" {
+#   value = azurerm_resource_group.acr.name
+# }
 
-output "kubernetes_cluster_name" {
-  value = azurerm_kubernetes_cluster.default.name
-}
+# output "resource_group_name" {
+#   value = azurerm_resource_group.aks.name
+# }
 
-output "host" {
-  value = azurerm_kubernetes_cluster.default.kube_config.0.host
-}
+# output "kubernetes_cluster_name" {
+#   value = azurerm_kubernetes_cluster.aks.name
+# }
 
-output "client_key" {
-  value = azurerm_kubernetes_cluster.default.kube_config.0.client_key
-}
+# output "host" {
+#   value = azurerm_kubernetes_cluster.aks.kube_config.0.host
+# }
 
-output "client_certificate" {
-  value = azurerm_kubernetes_cluster.default.kube_config.0.client_certificate
-}
+# output "client_key" {
+#   value = azurerm_kubernetes_cluster.aks.kube_config.0.client_key
+# }
 
-output "kube_config" {
-  value = azurerm_kubernetes_cluster.default.kube_config_raw
-  sensitive = true
-}
+# output "client_certificate" {
+#   value = azurerm_kubernetes_cluster.aks.kube_config.0.client_certificate
+# }
 
-output "cluster_username" {
-  value = azurerm_kubernetes_cluster.default.kube_config.0.username
-}
+# output "kube_config" {
+#   value = azurerm_kubernetes_cluster.aks.kube_config_raw
+#   sensitive = true
+# }
 
-output "cluster_password" {
-  value = azurerm_kubernetes_cluster.default.kube_config.0.password
-}
+# output "cluster_username" {
+#   value = azurerm_kubernetes_cluster.aks.kube_config.0.username
+# }
+
+# output "cluster_password" {
+#   value = azurerm_kubernetes_cluster.aks.kube_config.0.password
+# }

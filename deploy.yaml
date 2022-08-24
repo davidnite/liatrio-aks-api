@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-flask-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-flask-api
+  template:
+    metadata:
+      labels:
+        app: sample-flask-api
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      containers:
+      - name: sample-flask-api
+        image: friskydingoacr.azurecr.io/sampleflaskapi:v1
+        env:
+        - name: ALLOW_EMPTY_PASSWORD
+          value: "yes"
+        ports:
+        - containerPort: 5000
+          name: sampleflaskapi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-flask-api
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 5000
+  selector:
+    app: sample-flask-api
