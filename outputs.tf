@@ -2,13 +2,13 @@
 #   value = azurerm_resource_group.acr.name
 # }
 
-# output "resource_group_name" {
-#   value = azurerm_resource_group.aks.name
-# }
+output "resource_group_name" {
+  value = azurerm_resource_group.aks.name
+}
 
-# output "kubernetes_cluster_name" {
-#   value = azurerm_kubernetes_cluster.aks.name
-# }
+output "kubernetes_cluster_name" {
+  value = azurerm_kubernetes_cluster.aks.name
+}
 
 # output "host" {
 #   value = azurerm_kubernetes_cluster.aks.kube_config.0.host

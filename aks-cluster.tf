@@ -110,16 +110,16 @@ resource "azurerm_role_assignment" "aks" {
   skip_service_principal_aad_check = true
 }
 
-resource "null_resource" "deploy" {
-  provisioner "local-exec" {
-    command = "az aks get-credentials --resource-group ${azurerm_resource_group.aks.name} --name ${azurerm_kubernetes_cluster.aks.name} --overwrite-existing"
-  }
-  provisioner "local-exec" {
-    command = "kubectl apply -f deploy.yaml"
-  }
+# resource "null_resource" "deploy" {
+#   provisioner "local-exec" {
+#     command = "az aks get-credentials --resource-group ${azurerm_resource_group.aks.name} --name ${azurerm_kubernetes_cluster.aks.name} --overwrite-existing"
+#   }
+#   provisioner "local-exec" {
+#     command = "kubectl apply -f deploy.yaml"
+#   }
 
-  depends_on = [
-    azurerm_role_assignment.aks,
-    azapi_resource.run_acr_task
-  ]
-}
+#   depends_on = [
+#     azurerm_role_assignment.aks,
+#     azapi_resource.run_acr_task
+#   ]
+# }

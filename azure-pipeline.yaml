@@ -168,6 +168,19 @@ stages:
                     workingDirectory: $(System.DefaultWorkingDirectory)/$(Build.BuildId)
                     script: |
                       out=$(terraform output -json)
+                      echo "##vso[task.setvariable variable=aksResourceGroup]$(echo $out | jq -r '.resource_group_name.value')"
+                      echo "##vso[task.setvariable variable=aksCluster]$(echo $out | jq -r '.kubernetes_cluster_name.value')"
+
+                - task: Kubernetes@1
+                  displayName: kubectl apply using arguments
+                  inputs:
+                    connectionType: Azure Resource Manager
+                    azureSubscriptionEndpoint: $(serviceConnectionName)
+                    azureResourceGroup: $(aksResourceGroup)
+                    kubernetesCluster: $(aksCluster)
+                    workingDirectory: $(System.DefaultWorkingDirectory)/$(Build.BuildId)
+                    command: apply
+                    arguments: -f deploy.yaml
 
   - stage: Destroy
     condition: and(succeeded('Build'), eq(variables.terraform_destroy, true))
