@@ -110,9 +110,10 @@ stages:
     dependsOn: Build
     condition: and(succeeded('Build'), eq(variables.terraform_destroy, false))
     jobs:
-      - deployment: Deploy
+      - deployment: DeployDev
         timeoutInMinutes: 0
         displayName: 'Dev Environment Deployment'
+        environment: 'Dev'
         strategy:
           runOnce:
             deploy:
@@ -170,8 +171,9 @@ stages:
   - stage: Destroy
     condition: and(succeeded('Build'), eq(variables.terraform_destroy, true))
     jobs:
-      - deployment: Destroy
-        displayName: 'Environment Destroy'
+      - deployment: DestroyDev
+        displayName: 'Dev Environment Destroy'
+        environment: 'Dev'
         strategy:
           runOnce:
             deploy:
