@@ -6,6 +6,7 @@ trigger:
 variables:
   - group: tf_state
   - group: tf_vars
+  - group: secrets
   - name: environment
     value: 'dev'
   - name: serviceConnectionName
